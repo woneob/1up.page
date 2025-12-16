@@ -101,5 +101,9 @@ posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime
       </ul>
     </article>
     ))}
+
+    {posts.length === 0 && (
+      <p class="empty">등록된 게시물이 없습니다.</p>
+    )}
   </div>
 </DefaultLayout>
