@@ -9,6 +9,9 @@ node_modules/
 .env.*
 !.env.example
 
+# generated types
+.astro/
+
 # Vite files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
