@@ -5,6 +5,7 @@ import path from 'path';
 export default defineConfig({
   site: 'https://1up.page',
   base: '/',
+  output: 'static',
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
