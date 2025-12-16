@@ -1,0 +1,18 @@
+{
+  "name": "1up",
+  "version": "0.0.1",
+  "description": "Blog for 1up.page",
+  "type": "commonjs",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woneob/1upnote.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woneob/1upnote/issues"
+  },
+  "homepage": "https://github.com/woneob/1upnote#readme"
+}
