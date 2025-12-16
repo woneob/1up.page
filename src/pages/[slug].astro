@@ -1,0 +1,69 @@
+---
+import DefaultLayout from '~/layouts/DefaultLayout.astro';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('/src/content/posts/*/index.md', { eager: true });
+
+  return Object.keys(modules).map((filePath) => {
+    const normalized = path.normalize(filePath);
+    const dir = path.dirname(normalized);
+    const base = path.basename(dir);
+    const match = base.match(/^(\d{4}-\d{2}-\d{2})\.(.+)$/);
+
+    if (!match) {
+      throw new Error(`포스트 디렉토리 형식 오류: ${base}`);
+    }
+
+    const slug = match[2];
+
+    return { params: { slug } };
+  });
+}
+
+const { slug } = Astro.params;
+const modules = import.meta.glob('/src/content/posts/*/index.md', { eager: true });
+let postModule = null;
+
+for (const [filePath, mod] of Object.entries(modules)) {
+  const dir = path.dirname(filePath);
+  const base = path.basename(dir);
+
+  // base = "2025-11-24.bulkhead-pattern"
+  const match = base.match(/^(\d{4}-\d{2}-\d{2})\.(.+)$/);
+
+  if (!match) continue;
+
+  const folderSlug = match[2];
+
+  if (folderSlug === slug) {
+    postModule = mod;
+    break;
+  }
+}
+
+if (!postModule) {
+  throw new Error(`포스트를 찾을 수 없습니다: ${slug}`);
+}
+
+const { frontmatter } = postModule;
+const { title, description, pubDate, tags } = frontmatter;
+const Content = postModule.default;
+---
+
+<DefaultLayout {title} {description}>
+  <article>
+    <h1>{title}</h1>
+    <p>발행일: {pubDate}</p>
+
+    {tags && (
+      <ul>
+        {tags.map(tag => (
+          <li><a href={`/tags/${tag}`}>{tag}</a></li>
+        ))}
+      </ul>
+    )}
+
+    <Content />
+  </article>
+</DefaultLayout>

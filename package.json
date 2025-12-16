@@ -4,6 +4,11 @@
   "description": "Blog for 1up.page",
   "type": "commonjs",
   "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/woneob/1upnote.git"
@@ -14,5 +19,15 @@
   "bugs": {
     "url": "https://github.com/woneob/1upnote/issues"
   },
-  "homepage": "https://github.com/woneob/1upnote#readme"
+  "homepage": "https://github.com/woneob/1upnote#readme",
+  "dependencies": {
+    "astro": "5.16.5"
+  },
+  "devDependencies": {
+    "@astrojs/rss": "4.0.14",
+    "@astrojs/sitemap": "3.6.0",
+    "reading-time": "1.5.0",
+    "sass": "1.96.0",
+    "shiki": "3.20.0"
+  }
 }

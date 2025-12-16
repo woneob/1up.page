@@ -1,0 +1,106 @@
+---
+import DefaultLayout from '~/layouts/DefaultLayout.astro';
+import { Image } from 'astro:assets';
+import path from 'node:path';
+import readingTime from 'reading-time';
+import { formatDate } from '~/utils/formatDate';
+
+const modules = import.meta.glob('/src/content/posts/**/index.md', { eager: true });
+const coverImports = import.meta.glob('/src/content/posts/**/images/cover.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default',
+});
+
+const coverByDir = Object.entries(coverImports).reduce((map, [filePath, img]) => {
+  const normalized = filePath.replace(/\\/g, '/');
+  const dir = normalized.replace(/\/images\/[^/]+$/, '');
+
+  if (!map[dir]) {
+    map[dir] = img;
+  }
+
+  return map;
+}, {});
+
+const posts = Object.entries(modules).map(([filePath, mod]) => {
+  const dir = path.dirname(filePath).replace(/\\/g, '/'); // "../content/posts/2025-11-24.bulkhead"
+  const base = path.basename(dir);
+
+  const match = base.match(/^(\d{4}-\d{2}-\d{2})\.(.+)$/);
+  if (!match) throw new Error(`Invalid post folder name: ${base}`);
+
+  const slug = match[2];
+  const stats = readingTime(mod.rawContent());
+  const cover = coverByDir[dir] ?? null;
+
+  return {
+    slug,
+    title: mod.frontmatter.title,
+    description: mod.frontmatter.description,
+    pubDate: mod.frontmatter.pubDate,
+    tags: mod.frontmatter.tags,
+    cover,
+    stats,
+  };
+});
+
+posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+const description = "최근 게시물 목록";
+---
+
+<DefaultLayout {description}>
+  <div class="articles">
+    {posts.map(post => (
+    <article>
+      {post.cover && (
+        <figure class="cover">
+          <Image
+            src={post.cover}
+            width={960}
+            height={320}
+            alt={post.title}
+            class="cover"
+            format="webp"
+            fit="cover"
+          />
+        </figure>
+      )}
+
+      <h2>
+        <a href={`/${post.slug}`}>{post.title}</a>
+      </h2>
+
+      <dl class="postMeta">
+        <div class="postMetaItem" data-type="published">
+          <dt>Published</dt>
+          <dd>
+            <time datetime={post.pubDate}>
+              {formatDate(post.pubDate)}
+            </time>
+          </dd>
+        </div>
+
+        <div class="postMetaItem" data-type="readingTime">
+          <dt>Reading time</dt>
+          <dd>
+            <data value="{Math.ceil(post.stats.minutes)}">
+              {post.stats.text}
+            </data>
+          </dd>
+        </div>
+      </dl>
+      <div class="postBody">
+        <p>{post.description}</p>
+      </div>
+
+      <ul class="tags">
+        {post.tags.map(tag => (
+          <li>
+            <a href={`/tags/${tag}`} rel="tag">{tag}</a>
+          </li>
+        ))}
+      </ul>
+    </article>
+    ))}
+  </div>
+</DefaultLayout>

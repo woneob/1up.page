@@ -1,0 +1,27 @@
+[
+  {
+    "label": "posts",
+    "base": "/posts",
+    "path": "/"
+  },
+  {
+    "label": "tags",
+    "base": "/tags",
+    "path": "/tags"
+  },
+  {
+    "label": "about",
+    "base": "/about",
+    "path": "/about"
+  },
+  {
+    "label": "search",
+    "base": "/search",
+    "path": "/search"
+  },
+  {
+    "label": "RSS",
+    "base": "/rss",
+    "path": "/rss.xml"
+  }
+]

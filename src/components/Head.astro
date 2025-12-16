@@ -1,0 +1,22 @@
+---
+import site from '~/data/site.config.json';
+const { title, description } = Astro.props;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <title>{title}</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+
+  {site.author?.name && (
+    <meta name="author" content={site.author.name} />
+  )}
+
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={site.siteName}
+    href={new URL('rss.xml', Astro.site)} />
+</head>

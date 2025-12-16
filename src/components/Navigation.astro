@@ -1,0 +1,19 @@
+---
+const  { nav, currentPageId } = Astro.props;
+---
+
+<nav class="navigation" aria-label="Primary Navigation">
+  <ul class="mainNav">
+    {nav.map(item => {
+      const isActive = currentPageId === item.label;
+
+      return (
+        <li data-type={item.label}>
+          <a href={item.path} aria-current={isActive ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

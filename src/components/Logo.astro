@@ -1,0 +1,11 @@
+---
+const { siteName, description } = Astro.props;
+---
+
+<figure class="logo">
+  <a href="/">
+    <img src="/images/1up.png" alt={siteName + ' 로고'}>
+    <figcaption>{siteName}</figcaption>
+    <p class="tagline">{description}</p>
+  </a>
+</figure>

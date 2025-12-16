@@ -1,0 +1,407 @@
+@use "functions" as *;
+@use "reset" as *;
+@use "font" as *;
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+html {
+  background: #fff;
+  font-size: 100%;
+}
+
+body {
+  font: rem(16) #{"/"} 1.5 Pretendard, sans-serif;
+  color: #333;
+}
+
+.siteHeader {
+  display: flex;
+  max-width: rem(1000);
+  margin: 0 auto;
+
+  .logo {
+    margin: 0;
+
+    > a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+
+      img {
+        display: block;
+        width: 150px;
+        aspect-ratio: 1 / 1;
+        image-rendering: pixelated;
+        border-radius: 50%;
+      }
+
+      figcaption {
+        margin-top: 6px;
+        text-align: center;
+        font-size: 40px;
+        line-height: 1;
+        color: #333;
+      }
+    }
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #ddd;
+    }
+
+    .mainNav {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      width: fit-content;
+      gap: 4px;
+      // display: inline-block;
+
+      li {
+        flex: 1 1 0;
+        min-width: 54px;
+        text-align: center;
+
+        a {
+          display: block;
+          text-decoration: none;
+          padding: 4px 12px;
+          font-size: 11px;
+          color: #666;
+          text-transform: capitalize;
+
+          &::before {
+            content: "";
+            display: block;
+            width: 30px;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            opacity: .4;
+            transition: .1s scale;
+          }
+
+          &:hover::before {
+            opacity: .5;
+            scale: 1.1;
+          }
+
+          &[aria-current="page"] {
+            color: #333;
+
+            &::before {
+              opacity: .8;
+            }
+          }
+        }
+
+        $nav-names: ("posts", "tags", "about", "search", "RSS");
+
+        @each $name in $nav-names {
+          &[data-type="#{$name}"] a::before {
+            background-image: url("/images/icon_#{$name}.svg");
+          }
+        }
+      }
+    }
+  }
+
+  [data-layout-type="home"] & {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: rem(60) rem(20);
+    max-width: rem(960);
+    margin: 0 auto;
+
+    .tagline {
+      margin: 0;
+      text-align: center;
+      font-size: 14px;
+      color: #888
+    }
+
+    .navigation {
+      margin-top: 40px;
+    }
+  }
+
+  [data-layout-type="sub"] & {
+    padding: 40px 16px;
+    justify-content: space-between;
+
+    .logo {
+      display: block;
+
+      a {
+        display: block;
+
+        img {
+          float: left;
+          width: 50px;
+          margin-right: 10px;
+          aspect-ratio: 1 / 1;
+          image-rendering: pixelated;
+          border-radius: 50%;
+        }
+
+        figcaption {
+          font-weight: bold;
+          font-size: 20px;
+          color: #666;
+          line-height: 1.3;
+        }
+
+        .tagline {
+          white-space: nowrap;
+          color: #888;
+          font-size: 13px;
+          line-height: 1.2;
+        }
+      }
+    }
+
+    .navigation {
+      li {
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.siteBody {
+  max-width: rem(1000);
+  margin: 0 auto;
+  padding: rem(20);
+}
+
+.articles {
+  article {
+    + article {
+      margin-top: 80px;
+    }
+
+    .cover {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    h2 {
+      margin-top: 10px;
+      font-weight: 300;
+      font-size: 30px;
+
+      a {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #222;
+
+      }
+    }
+
+    .postMeta {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      .postMetaItem {
+        position: relative;
+        margin-right: 10px;
+        padding-left: 16px;
+
+        dt {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+        }
+
+        dd {
+          font-size: 13px;
+          color: #777;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          inset: 0 auto 0 0;
+          margin: auto;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+
+        $meta-names: ("published", "readingTime", "wordCount");
+
+        @each $name in $meta-names {
+          &[data-type="#{$name}"]::before {
+            background-image: url("/images/metaIcon_#{$name}.svg");
+          }
+        }
+      }
+    }
+
+    .postBody {
+      padding: 0 2px;
+      margin-top: 16px;
+      font-size: 16px;
+      overflow: hidden;
+      text-align: justify;
+      color: #666;
+    }
+
+    .tags {
+      margin-top: 10px;
+
+      li {
+        display: inline-block;
+        margin-right: 6px;
+
+        a {
+          padding: 1px 10px;
+          background-color:#eee;
+          border: 1px solid #ddd;
+          border-radius: 3px;
+          font-size: 15px;
+          text-decoration: none;
+          color: #555;
+        }
+      }
+    }
+  }
+
+
+}
+
+
+.posts {
+  .postItem {
+    padding-bottom: 40px;
+
+    .postHeader {
+      h2 {
+        font-size: rem(28);
+        font-weight: 300;
+
+        a {
+          text-decoration: none;
+          color: #333;
+
+          &:hover {
+            color: #000;
+          }
+        }
+      }
+
+      .postMeta {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+
+        .postMetaItem {
+          position: relative;
+          margin-right: 10px;
+          padding-left: 16px;
+
+          dt {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+          }
+
+          dd {
+            font-size: 13px;
+            color: #666;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            inset: 0 auto 0 0;
+            margin: auto;
+            background-repeat: no-repeat;
+            background-size: contain;
+          }
+
+          $meta-names: ("published", "readingTime", "wordCount");
+
+          @each $name in $meta-names {
+            &[data-type="#{$name}"]::before {
+              background-image: url("/images/metaIcon_#{$name}.svg");
+            }
+          }
+        }
+      }
+    }
+
+    .postBody {
+      margin-top: 14px;
+      font-size: rem(16);
+      text-align: justify;
+      color: #555;
+    }
+
+    .tags {
+      margin-top: 10px;
+
+      li {
+        display: inline-block;
+        margin-right: 4px;
+
+        a {
+          padding: 1px 10px;
+          background-color:#eee;
+          border: 1px solid #ddd;
+          border-radius: 3px;
+          font-size: 13px;
+          text-decoration: none;
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+.siteFooter {
+  padding-top: 30px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
