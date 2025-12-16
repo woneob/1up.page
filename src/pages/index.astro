@@ -45,10 +45,9 @@ const posts = Object.entries(modules).map(([filePath, mod]) => {
 });
 
 posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
-const description = "최근 게시물 목록";
 ---
 
-<DefaultLayout {description}>
+<DefaultLayout>
   <div class="articles">
     {posts.map(post => (
     <article>
