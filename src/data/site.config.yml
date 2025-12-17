@@ -1,0 +1,25 @@
+# Website settings
+siteName: 1UP
+tagline: Web design, development and UX
+description: >-
+  1up.page is a blog that focuses on standards-based design techniques,
+  useful UX information and expert tips for building effective user interfaces.
+url: https://1up.page
+timezone: Asia/Seoul
+framework: Astro
+hosting: Cloudflare Pages
+
+# Language and locale settings
+language:
+  code: ko
+  locale: ko_KR
+  name: Korean
+
+# Author information
+author:
+  name: 1UP
+  location: Seoul, Korea
+  email: 1up@1upz.com
+  social:
+    x: 1upz
+    github: woneob

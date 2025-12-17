@@ -1,5 +1,5 @@
 ---
-import site from '~/data/site.config.json';
+import site from '~/data/site.config.yml';
 
 const buildTime = import.meta.env.BUILD_TIME;
 const formattedDate = new Date(buildTime).toLocaleDateString('en-US', {
@@ -15,7 +15,7 @@ const banner = `
  | | |_| |  _/
  |_|.___/|_|
 
- ${site.siteName} - ${site.description}
+ ${site.siteName} - ${site.tagline}
  Last updated at ${formattedDate}
 
 -->
