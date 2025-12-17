@@ -1,6 +1,7 @@
 ---
 import '~/styles/global.scss';
 
+import Banner from '~/components/Banner.astro';
 import Head from '~/components/Head.astro';
 import Logo from '~/components/Logo.astro';
 import Navigation from '~/components/Navigation.astro';
@@ -31,6 +32,8 @@ const pageDescription = truncate(description ?? site.description);
 ---
 
 <html lang={site.language.code}>
+  <Banner />
+
   <Head
     title={pageTitle}
     description={pageDescription} />

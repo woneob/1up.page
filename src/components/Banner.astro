@@ -1,0 +1,25 @@
+---
+import site from '~/data/site.config.json';
+
+const buildTime = import.meta.env.BUILD_TIME;
+const formattedDate = new Date(buildTime).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const banner = `
+<!--
+  _ _   _ ___
+ / | | | | _ \`
+ | | |_| |  _/
+ |_|.___/|_|
+
+ ${site.siteName} - ${site.description}
+ Last updated at ${formattedDate}
+
+-->
+`;
+---
+
+<Fragment set:html={banner} />
