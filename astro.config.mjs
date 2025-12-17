@@ -17,6 +17,9 @@ export default defineConfig({
       alias: {
         '~/': path.resolve('./src') + '/',
       }
+    },
+    define: {
+      'import.meta.env.BUILD_TIME': JSON.stringify(new Date().toISOString()),
     }
   }
 });
