@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import yaml from '@rollup/plugin-yaml';
 import sitemap from '@astrojs/sitemap';
 import path from 'path';
 
@@ -20,7 +21,8 @@ export default defineConfig({
     },
     define: {
       'import.meta.env.BUILD_TIME': JSON.stringify(new Date().toISOString()),
-    }
+    },
+    plugins: [yaml()]
   }
 });
 
