@@ -28,7 +28,7 @@ function getPageId(path) {
 
 const pageId = getPageId(currentPath);
 const pageTitle = title ? `${title} | ${site.siteName}` : site.siteName;
-const pageDescription = truncate(description ?? site.description);
+const pageDescription = truncate(description ?? site.tagline);
 ---
 
 <html lang={site.language.code}>
@@ -45,7 +45,7 @@ const pageDescription = truncate(description ?? site.description);
     <header class="siteHeader">
       <Logo
         siteName={site.siteName}
-        description={site.description} />
+        description={site.tagline} />
 
       <Navigation
         nav= {nav}
