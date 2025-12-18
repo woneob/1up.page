@@ -122,7 +122,7 @@ body {
 
         @each $name in $nav-names {
           &[data-type="#{$name}"] a::before {
-            background-image: url("/images/icon_#{$name}.svg");
+            background-image: url("/images/navIcons/icon_#{$name}.svg");
           }
         }
       }
@@ -267,7 +267,7 @@ body {
 
         @each $name in $meta-names {
           &[data-type="#{$name}"]::before {
-            background-image: url("/images/metaIcon_#{$name}.svg");
+            background-image: url("/images/metaIcons/metaIcon_#{$name}.svg");
           }
         }
       }
