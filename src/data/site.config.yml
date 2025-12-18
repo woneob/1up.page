@@ -23,3 +23,19 @@ author:
   social:
     x: 1upz
     github: woneob
+
+# Icons
+siteIcons:
+  - rel:
+      - icon
+    href: /images/siteIcons/1upIcon.svg
+    type: image/svg+xml
+  - rel:
+      - alternate
+      - icon
+    type:
+    href: /images/siteIcons/favicon.ico
+  - rel:
+      - alternate
+    href: /images/siteIcons/favicon.ico
+    type:

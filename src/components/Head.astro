@@ -14,17 +14,12 @@ const { title, description } = Astro.props;
     <meta name="author" content={site.author.name} />
   )}
 
-  <link
-    rel="icon"
-    href="/images/siteIcons/1upIcon.svg" type="image/svg+xml" />
-
-  <link
-    rel="apple-touch-icon"
-    href="/images/siteIcons/1up_180x180.png" />
-
-  <link
-    rel="alternate icon"
-    href="/images/siteIcons/favicon.ico" />
+  {site.siteIcons.map((item) => (
+    <link
+      rel={item.rel.join(' ')}
+      href={item.href}
+      type={item.type} />
+  ))}
 
   <link
     rel="alternate"
