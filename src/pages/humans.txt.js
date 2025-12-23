@@ -26,7 +26,7 @@ X: @${site.author.social.x}
 Location: ${site.author.location}
 
 /* SITE */
-Site Name: ${site.title}
+Site Name: ${site.siteName}
 Site URL: ${site.url}
 Last update: ${buildTime_formattedDate}
 Language: ${site.language.name}
