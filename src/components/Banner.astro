@@ -2,11 +2,19 @@
 import site from '~/data/site.config.yml';
 
 const buildTime = import.meta.env.BUILD_TIME;
-const formattedDate = new Date(buildTime).toLocaleDateString('en-US', {
+const date = new Date(buildTime);
+
+const time = new Intl.DateTimeFormat('en-US', {
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true,
+}).format(date);
+
+const day = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
-});
+}).format(date);
 
 const banner = `
 <!--
@@ -16,8 +24,7 @@ const banner = `
  |_|.___/|_|
 
  ${site.siteName} - ${site.tagline}
- Last updated at ${formattedDate}
-
+ Last updated at ${time}, ${day}
 -->
 `;
 ---
