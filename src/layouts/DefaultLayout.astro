@@ -29,6 +29,7 @@ function getPageId(path) {
 const pageId = getPageId(currentPath);
 const pageTitle = title ? `${title} | ${site.siteName}` : site.siteName;
 const pageDescription = truncate(description ?? site.tagline);
+const layoutType = currentPath === '/' ? 'main' : 'sub';
 ---
 
 <html lang={site.language.code}>
@@ -40,12 +41,13 @@ const pageDescription = truncate(description ?? site.tagline);
 
   <body
     id={'page-' + pageId}
-    data-layout-type={currentPath === '/' ? 'home' : 'sub'}>
+    data-layout-type={layoutType}>
 
     <header class="siteHeader">
       <Logo
         siteName={site.siteName}
-        description={site.tagline} />
+        description={site.tagline}
+        layoutType={layoutType} />
 
       <Navigation
         nav= {nav}
