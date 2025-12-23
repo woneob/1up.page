@@ -30,12 +30,18 @@ siteIcons:
       - icon
     href: /images/siteIcons/1upIcon.svg
     type: image/svg+xml
+    sizes: any
+    purpose: any
   - rel:
       - alternate
     type: image/png
     href: /images/siteIcons/1up_180x180.png
+    sizes: 180x180
+    purpose: any
   - rel:
       - alternate
       - icon
     href: /images/siteIcons/favicon.ico
     type: image/x-icon
+    sizes: 48x48
+    purpose: any
