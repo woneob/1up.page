@@ -9,6 +9,13 @@ timezone: Asia/Seoul
 framework: Astro
 hosting: Cloudflare Pages
 
+# App
+themeColor: '#fff'
+backgroundColor: '#fff'
+display: standalone
+orientation: natural
+startUrl: /
+
 # Language and locale settings
 language:
   code: ko
@@ -45,3 +52,4 @@ siteIcons:
     type: image/x-icon
     sizes: 48x48
     purpose: any
+

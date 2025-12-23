@@ -14,12 +14,21 @@ const { title, description } = Astro.props;
     <meta name="author" content={site.author.name} />
   )}
 
+  {site.themeColor && (
+    <meta name="theme-color" content={site.themeColor} />
+  )}
+
   {site.siteIcons.map((item) => (
     <link
       rel={item.rel.join(' ')}
       href={item.href}
       type={item.type} />
   ))}
+
+  <link
+    rel="manifest"
+    href="/manifest.json"
+    type="application/manifest+json">
 
   <link
     rel="alternate"
