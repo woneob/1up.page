@@ -38,4 +38,4 @@ siteIcons:
       - alternate
       - icon
     href: /images/siteIcons/favicon.ico
-    type:
+    type: image/x-icon
