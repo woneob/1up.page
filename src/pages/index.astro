@@ -82,7 +82,7 @@ posts.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime
         <div class="postMetaItem" data-type="readingTime">
           <dt>Reading time</dt>
           <dd>
-            <data value="{Math.ceil(post.stats.minutes)}">
+            <data value={Math.ceil(post.stats.minutes)}>
               {post.stats.text}
             </data>
           </dd>
