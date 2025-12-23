@@ -32,10 +32,10 @@ siteIcons:
     type: image/svg+xml
   - rel:
       - alternate
-      - icon
-    type:
-    href: /images/siteIcons/favicon.ico
+    type: image/png
+    href: /images/siteIcons/1up_180x180.png
   - rel:
       - alternate
+      - icon
     href: /images/siteIcons/favicon.ico
     type:
