@@ -25,9 +25,6 @@ Github: 'https://github.com/'${site.author.social.github}
 X: @${site.author.social.x}
 Location: ${site.author.location}
 
-/* THANKS */
-Jekyll (https://jekyllrb.com/)
-
 /* SITE */
 Site Name: ${site.title}
 Site URL: ${site.url}
