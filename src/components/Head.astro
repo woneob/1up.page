@@ -1,6 +1,7 @@
 ---
 import site from '~/data/site.config.yml';
 const { title, description, robots } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <head>
@@ -28,6 +29,10 @@ const { title, description, robots } = Astro.props;
       href={item.href}
       type={item.type} />
   ))}
+
+  <link
+    rel="canonical"
+    href={canonicalURL} />
 
   <link
     rel="manifest"
