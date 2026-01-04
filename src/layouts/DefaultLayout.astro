@@ -11,8 +11,10 @@ import { truncate } from '~/utils/truncate';
 import site from '~/data/site.config.yml';
 import nav from '~/data/navigation.json';
 
-const { title, description } = Astro.props;
+const { title, description, robots } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+console.log(robots)
 
 function getPageId(path) {
   if (path === '/') return 'posts';
@@ -37,7 +39,8 @@ const layoutType = currentPath === '/' ? 'main' : 'sub';
 
   <Head
     title={pageTitle}
-    description={pageDescription} />
+    description={pageDescription}
+    robots={robots} />
 
   <body
     id={'page-' + pageId}

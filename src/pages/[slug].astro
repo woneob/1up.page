@@ -47,11 +47,11 @@ if (!postModule) {
 }
 
 const { frontmatter } = postModule;
-const { title, description, pubDate, tags } = frontmatter;
+const { title, description, pubDate, tags, robots } = frontmatter;
 const Content = postModule.default;
 ---
 
-<DefaultLayout {title} {description}>
+<DefaultLayout {title} {description} {robots}>
   <article>
     <h1>{title}</h1>
     <p>발행일: {pubDate}</p>
