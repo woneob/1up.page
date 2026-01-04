@@ -21,7 +21,7 @@ const data = {
 export async function GET() {
   return new Response(JSON.stringify(data, null, 2), {
     headers: {
-      'Content-Type': 'application/manifest+json; charset=utf-8', // 매니페스트 전용 MIME 타입 권장
-    },
+      'Content-Type': 'application/manifest+json; charset=utf-8'
+    }
   });
 }
